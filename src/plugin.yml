@@ -1,0 +1,11 @@
+main: pl.lakasabasz.mc.Main
+name: GolemsRepair
+version: 1.0
+author: Łukasz Łakasabasz Mastalerz
+description: Plugin repairing spawning iron golems in iron farm
+commands:
+    gr:
+        description: Command managing iron golems spawning
+        usage: /gr set\n/gr show
+        permission: golemreapir.command
+        permission-message: You don't have the golemreapir.command permission.

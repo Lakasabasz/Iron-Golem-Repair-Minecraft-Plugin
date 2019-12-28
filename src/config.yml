@@ -1,0 +1,4 @@
+spawnpoints: []
+spawntimes:
+    min: 45
+    max: 120

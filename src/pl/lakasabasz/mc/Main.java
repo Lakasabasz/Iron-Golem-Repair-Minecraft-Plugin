@@ -15,7 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
 	
-	public static Map<Location, Integer> spawningData;
+	public static Map<Location, Integer> spawningData = new HashMap<>();
 	
 	public static int min = 0;
 	public static int max = 60;
@@ -25,7 +25,7 @@ public class Main extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
-		this.getServer().getConsoleSender().sendMessage("[Golem repair] XD to dzia³a");
+		this.getServer().getConsoleSender().sendMessage("[Golem repair] £adowanie pluginu");
 		fc = (YamlConfiguration) this.getConfig();
 		List<String> data = fc.getStringList("spawnpoints");
 		for(String s : data) {
@@ -35,6 +35,7 @@ public class Main extends JavaPlugin {
 			nums[1] = Double.parseDouble(tmp[2]);
 			nums[2] = Double.parseDouble(tmp[3]);
 			Location l = new Location(this.getServer().getWorld(tmp[0]), nums[0], nums[1], nums[2]);
+			this.getServer().getConsoleSender().sendMessage("[GolemRepair] New location in " + l.toVector().toString());
 			Main.spawningData.put(l, 0);
 		}
 		Main.spawningData = new HashMap<>();

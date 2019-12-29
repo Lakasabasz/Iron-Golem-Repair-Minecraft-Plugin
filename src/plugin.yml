@@ -1,6 +1,6 @@
 main: pl.lakasabasz.mc.Main
 name: GolemsRepair
-version: 1.0
+version: 1.1
 author: Łukasz Łakasabasz Mastalerz
 description: Plugin repairing spawning iron golems in iron farm
 commands:

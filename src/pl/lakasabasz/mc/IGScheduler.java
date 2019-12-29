@@ -20,6 +20,7 @@ public class IGScheduler implements Runnable {
 			return;
 		}
 		for(Location l : Main.spawningData.keySet()) {
+			if(!l.getChunk().isLoaded()) continue;
 			if(Main.spawningData.get(l) <= 0) {
 				spawnIG(l);
 				Random r = new Random();

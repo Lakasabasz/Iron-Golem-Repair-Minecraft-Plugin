@@ -8,7 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -20,13 +20,13 @@ public class Main extends JavaPlugin {
 	public static int min = 0;
 	public static int max = 60;
 	
-	public static FileConfiguration fc;
+	public static YamlConfiguration fc;
 
 	
 	@Override
 	public void onEnable() {
 		this.getServer().getConsoleSender().sendMessage("[Golem repair] XD to dzia³a");
-		fc = this.getConfig();
+		fc = (YamlConfiguration) this.getConfig();
 		List<String> data = fc.getStringList("spawnpoints");
 		for(String s : data) {
 			String[] tmp = s.split(",");
@@ -83,7 +83,7 @@ public class Main extends JavaPlugin {
 		} else if(args[0].equals("reload")){
 			Main.spawningData.clear();
 			this.reloadConfig();
-			fc = this.getConfig();
+			fc = (YamlConfiguration) this.getConfig();
 			List<String> data = fc.getStringList("spawnpoints");
 			for(String s : data) {
 				String[] tmp = s.split(",");

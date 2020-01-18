@@ -21,11 +21,13 @@ public class Main extends JavaPlugin {
 	public static int max = 60;
 	
 	public static YamlConfiguration fc;
+	
+	private static JavaPlugin pl;
 
 	
 	@Override
 	public void onEnable() {
-		this.getServer().getConsoleSender().sendMessage("[Golem repair] £adowanie pluginu");
+		this.getServer().getConsoleSender().sendMessage("[Golem repair] §e£adowanie pluginu");
 		fc = (YamlConfiguration) this.getConfig();
 		List<String> data = fc.getStringList("spawnpoints");
 		for(String s : data) {
@@ -42,6 +44,11 @@ public class Main extends JavaPlugin {
 		min = fc.getInt("spawntimes.min");
 		max = fc.getInt("spawntimes.max");
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new IGScheduler(), 20*10, 20);
+		pl = this;
+		@SuppressWarnings("unused")
+		Logger l = new Logger();
+		this.getServer().getPluginManager().registerEvents(new VillagerEventLogger(), this);
+		this.getServer().getConsoleSender().sendMessage("[Golem repair] §eLogger ustawiony " + Logger.getPath());
 	}
 	
 	@Override
@@ -105,7 +112,12 @@ public class Main extends JavaPlugin {
 			sender.sendMessage(args[0]);
 			return false;
 		}
+		
 		return true;
+	}
+	
+	public static JavaPlugin getThisPlugin() {
+		return pl;
 	}
 
 }

@@ -6,6 +6,32 @@ description: Plugin repairing spawning iron golems in iron farm
 commands:
     gr:
         description: Command managing iron golems spawning
-        usage: /gr set\n/gr show
-        permission: golemreapir.command
-        permission-message: You don't have the golemreapir.command permission.
+        usage: /gr set\n/gr show\n/gr reload
+permissions:
+    golemrepair.set:
+        description: Allow to set spawning place for golems
+        default: false
+    golemrepair.show:
+        description: Allow to show spawning place for golems
+        default: false
+    golemrepair.reload:
+        description: Allow to clean all spawning place
+        default: false
+    golemrepair.villagerlog:
+        description: Allow to receive logs about villagers changes
+        default: false
+    golemrepair.*:
+        description: Allow to get all permissions
+        default: false
+        children:
+            golemrepair.set: true
+            golemrepair.show: true
+            golemrepair.reload: true
+            golemrepair.villagerlog: true
+    golemrepair.command:
+        description: Allow to invoke all commands
+        default: false
+        children:
+            golemrepair.set: true
+            golemrepair.show: true
+            golemrepair.reload: true

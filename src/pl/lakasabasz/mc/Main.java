@@ -64,15 +64,15 @@ public class Main extends JavaPlugin {
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if(!sender.hasPermission("golemreapir.command")) {
-			sender.sendMessage("§4Nie masz uprawnieñ");
-			return false;
-		}
-		if(args.length == 0) {
+		if(args.length == 0 && (sender.hasPermission("golemrepair.set")
+				|| sender.hasPermission("golemrepair.show")
+				|| sender.hasPermission("golemrepair.reload")
+				|| sender.hasPermission("golemrepair.command"))
+				) {
 			sender.sendMessage("U¿ycie:");
 			sender.sendMessage("/gr set");
 			sender.sendMessage("/gr show");
-		} else if(args[0].equals("set")) {
+		} else if(args[0].equals("set") && sender.hasPermission("golemrepair.set")) {
 			Player p = (Player) sender;
 			Location l = p.getLocation();
 			String s = l.toString();
@@ -84,11 +84,11 @@ public class Main extends JavaPlugin {
 				e.printStackTrace();
 			}
 			spawningData.put(l, 0);
-		} else if(args[0].equals("show")) {
+		} else if(args[0].equals("show") && sender.hasPermission("golemrepair.show")) {
 			for(Location l : spawningData.keySet()) {
 				sender.sendMessage("§2" + l.toString() + " | §3" + spawningData.get(l));
 			}
-		} else if(args[0].equals("reload")){
+		} else if(args[0].equals("reload")  && sender.hasPermission("golemrepair.reload")){
 			Main.spawningData.clear();
 			this.reloadConfig();
 			fc = (YamlConfiguration) this.getConfig();
@@ -107,7 +107,7 @@ public class Main extends JavaPlugin {
 			max = fc.getInt("spawntimes.max");
 			sender.sendMessage("[Golem Repair] Reloaded");
 			this.getServer().getConsoleSender().sendMessage("[Golem Repair] Config reloaded");
-		}else {
+		} else {
 			sender.sendMessage("§4Say what?!");
 			sender.sendMessage(args[0]);
 			return false;

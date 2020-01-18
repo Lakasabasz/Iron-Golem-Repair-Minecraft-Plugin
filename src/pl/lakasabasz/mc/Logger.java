@@ -50,18 +50,17 @@ public class Logger {
 	
 	private static void checkIfFilenameIsValid() {
 		if(logFile == null || !logFile.getName().equals(LocalDate.now().toString() + ".log")) {
-			logFile = null;
+			String filename = LocalDate.now().toString() + ".log";
+			logFile = new File(Main.getThisPlugin().getDataFolder() + "/" + filename);
 			try {
 				log.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (NullPointerException e) {
-				// It is possible so do nothing
+				// It is possible, just ignore it
 			}
-			logFile = new File(Main.getThisPlugin().getDataFolder() + "/" + LocalDate.now().toString() + ".log");
 			try {
-				log = new FileWriter(Main.getThisPlugin().getDataFolder() + "/" + LocalDate.now().toString() + ".log");
+				log = new FileWriter(Main.getThisPlugin().getDataFolder() + "/" + filename, true);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -24,7 +24,7 @@ public class VillagerEventLogger implements Listener {
 			Villager v = (Villager) e.getEntity();
 			Logger.logError("Villager " + getVillagerIDs(v) + " was killed");
 			for(Player p : Bukkit.getServer().getOnlinePlayers()) {
-				if(p.hasPermission("golemreapir.villagerlog")) {
+				if(p.hasPermission("golemrepair.villagerlog")) {
 					p.sendMessage("[GolemRepair] §4Villager " + getVillagerIDs(v) + " was killed");
 				}
 			}
@@ -46,7 +46,7 @@ public class VillagerEventLogger implements Listener {
 	public void onRadiTriggerEvent(RaidTriggerEvent e) {
 		Logger.logWarning(e.getPlayer().getDisplayName() + " triggered raid in location " + e.getRaid().getLocation().getBlockX() + " " + e.getRaid().getLocation().getBlockZ());
 		for(Player p : Bukkit.getServer().getOnlinePlayers()) {
-			if(p.hasPermission("golemreapir.villagerlog")) {
+			if(p.hasPermission("golemrepair.villagerlog")) {
 				p.sendMessage("[GolemRepair] §4" + e.getPlayer().getDisplayName() + " triggered raid in location " + e.getRaid().getLocation().getBlockX() + " " + e.getRaid().getLocation().getBlockZ());
 			}
 		}
@@ -58,7 +58,7 @@ public class VillagerEventLogger implements Listener {
 			Logger.logInfo("New villager was born");
 		}
 		for(Player p : Bukkit.getServer().getOnlinePlayers()) {
-			if(p.hasPermission("golemreapir.villagerlog")) {
+			if(p.hasPermission("golemrepair.villagerlog")) {
 				p.sendMessage("[GolemRepair] §2New villager was born");
 			}
 		}
@@ -85,7 +85,7 @@ public class VillagerEventLogger implements Listener {
 				vil.setVillagerLevel(v.getVillagerLevel());
 				vil.setVillagerType(v.getVillagerType());
 				for(Player p : Bukkit.getServer().getOnlinePlayers()) {
-					if(p.hasPermission("golemreapir.villagerlog")) {
+					if(p.hasPermission("golemrepair.villagerlog")) {
 						p.sendMessage("[GolemRepair] §3Villager was resurected");
 					}
 				}
